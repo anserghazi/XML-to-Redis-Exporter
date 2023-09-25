@@ -19,7 +19,7 @@ async function saveToRedis(xmlJson) {
           console.error('Error writing subdomains data to Redis:', err);
           return reject(err);
         }
-        console.log('Subdomains data written to Redis');
+        console.log('Subdomains data written to Redis', subdomainsData);
         resolve();
       });
     });
@@ -30,7 +30,7 @@ async function saveToRedis(xmlJson) {
           console.error('Error writing cookies data to Redis:', err);
           return reject(err);
         }
-        console.log('Cookies data written to Redis');
+        console.log('Cookies data written to Redis', cookiesData);
         resolve();
       });
     });
