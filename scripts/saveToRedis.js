@@ -1,12 +1,14 @@
 const Redis = require('ioredis');
+
 // Connect to Redis
 const redis = new Redis({
-  host: "localhost", // Your Redis server host
+  host: "host.docker.internal", // Your Redis server host
   port: 6379, // Your Redis server port
 });
 
 async function saveToRedis(xmlJson) {
   try {
+
     const subdomainsKey = 'subdomains';
     const cookiesKey = 'cookies';
     const subdomainsData = xmlJson.config.subdomains[0].subdomain
@@ -27,7 +29,9 @@ async function saveToRedis(xmlJson) {
         console.log('Cookies data written to Redis');
       }
     });
+
     return('Config data successfully written to Redis.')
+    
   } catch (error) {
     console.error('Error storing data in Redis:', error);
     throw error;
