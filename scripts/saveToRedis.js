@@ -2,7 +2,7 @@ const Redis = require('ioredis');
 
 // Connect to Redis
 const redis = new Redis({
-  host: "host.docker.internal", // Your Redis server host
+  host: "host.docker.internal" || "localhost", // Your Redis server host
   port: 6379, // Your Redis server port
 });
 
