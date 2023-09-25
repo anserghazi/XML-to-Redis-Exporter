@@ -1,5 +1,6 @@
 const { readXmlFile } = require('./scripts/readXmlFile.js');
 const { parseXmlFile } = require('./scripts/parseXmlFile.js');
+const { saveToRedis } = require('./scripts/saveToRedis.js');
 
 async function exportXmlToRedis() {
     try {
@@ -15,6 +16,10 @@ async function exportXmlToRedis() {
 
         // Convert XML string to JSON
         const xmlJson = await parseXmlFile(xmlString);
+        
+        // Save JSON to Redis
+        const redisResponse = await saveToRedis(xmlJson)
+        console.log(redisResponse);
         
     } catch (error) {
         console.error('Error occurred:', error);
