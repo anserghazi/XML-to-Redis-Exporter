@@ -1,4 +1,5 @@
 const { readXmlFile } = require('./scripts/readXmlFile.js');
+const { parseXmlFile } = require('./scripts/parseXmlFile.js');
 
 async function exportXmlToRedis() {
     try {
@@ -8,9 +9,13 @@ async function exportXmlToRedis() {
             console.error('Please provide the file path as a command line argument.');
             process.exit(1);
         }
-        // Read XML file and store its contents as a string in xmlData
-        const xmlData = await readXmlFile(filePath);
 
+        // Read XML file and store its contents as a string in xmlData
+        const xmlString = await readXmlFile(filePath);
+
+        // Convert XML string to JSON
+        const xmlJson = await parseXmlFile(xmlString);
+        
     } catch (error) {
         console.error('Error occurred:', error);
         process.exit(1);
